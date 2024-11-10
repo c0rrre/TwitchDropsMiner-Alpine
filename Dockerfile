@@ -28,9 +28,6 @@ RUN apk add --no-cache \
     cairo-dev \
     glib-dev \
     pango-dev \
-    # Ayatana AppIndicator dependencies
-    libayatana-indicator-dev \
-    libdbusmenu-gtk3-dev
 
 # Create app directory
 WORKDIR /app
@@ -73,9 +70,6 @@ RUN apk add --no-cache \
     cairo \
     glib \
     pango \
-    # Runtime Ayatana AppIndicator dependencies
-    libayatana-indicator \
-    libdbusmenu-gtk3
 
 WORKDIR /app
 

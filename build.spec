@@ -43,21 +43,21 @@ hiddenimports: list[str] = [
     "setuptools._distutils.archive_util",
 ]
 
-if sys.platform == "linux":
-    # Needed files for better system tray support on Linux via pystray (AppIndicator backend).
-    datas.append((Path("/usr/lib/girepository-1.0/AppIndicator3-0.1.typelib"), "gi_typelibs"))
-    binaries.append((Path("/lib/x86_64-linux-gnu/libappindicator3.so.1"), "."))
-    hiddenimports.extend([
-        "gi.repository.Gtk",
-        "gi.repository.GObject",
-    ])
-    hooksconfig = {
-        "gi": {
-            "icons": [],
-            "themes": [],
-            "languages": ["en_US"]
-        }
-    }
+# if sys.platform == "linux":
+#     # Needed files for better system tray support on Linux via pystray (AppIndicator backend).
+#     datas.append((Path("/usr/lib/girepository-1.0/AppIndicator3-0.1.typelib"), "gi_typelibs"))
+#     binaries.append((Path("/lib/x86_64-linux-gnu/libappindicator3.so.1"), "."))
+#     hiddenimports.extend([
+#         "gi.repository.Gtk",
+#         "gi.repository.GObject",
+#     ])
+#     hooksconfig = {
+#         "gi": {
+#             "icons": [],
+#             "themes": [],
+#             "languages": ["en_US"]
+#         }
+#     }
 
 block_cipher = None
 a = Analysis(
