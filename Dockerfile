@@ -27,18 +27,13 @@ RUN apk add --no-cache \
     # Additional dependencies
     cairo-dev \
     glib-dev \
-    pango-dev \
-    libappindicator-dev
+    pango-dev
 
 # Create app directory
 WORKDIR /app
 
 # Copy your application files
 COPY . .
-
-# Create required directories for Linux build
-RUN mkdir -p /app/gi_typelibs && \
-ln -s /usr/lib/girepository-1.0/AppIndicator3-0.1.typelib /app/gi_typelibs/
 
 # Create and activate virtual environment
 RUN python3 -m venv env && \
@@ -74,8 +69,7 @@ RUN apk add --no-cache \
     # Additional runtime dependencies
     cairo \
     glib \
-    pango \
-    libappindicator
+    pango
 
 WORKDIR /app
 
