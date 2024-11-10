@@ -29,7 +29,6 @@ RUN apk add --no-cache \
     glib-dev \
     pango-dev \
     # Ayatana AppIndicator dependencies
-    ayatana-appindicator-dev \
     libayatana-indicator-dev \
     libdbusmenu-gtk3-dev
 
@@ -80,7 +79,6 @@ RUN apk add --no-cache \
     glib \
     pango \
     # Runtime Ayatana AppIndicator dependencies
-    ayatana-appindicator \
     libayatana-indicator \
     libdbusmenu-gtk3
 
