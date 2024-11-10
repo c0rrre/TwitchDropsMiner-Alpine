@@ -27,7 +27,7 @@ RUN apk add --no-cache \
     # Additional dependencies
     cairo-dev \
     glib-dev \
-    pango-dev \
+    pango-dev
 
 # Create app directory
 WORKDIR /app
@@ -69,7 +69,7 @@ RUN apk add --no-cache \
     # Additional runtime dependencies
     cairo \
     glib \
-    pango \
+    pango
 
 WORKDIR /app
 
