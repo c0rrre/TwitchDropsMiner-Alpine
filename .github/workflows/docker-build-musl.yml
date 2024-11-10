@@ -1,0 +1,60 @@
+name: Build and Release for musl
+
+on:
+  push:
+    branches: [ master ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        id: docker_build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          load: true  # Load the image locally instead of pushing
+          tags: local-build:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Extract built executable
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          # Create a directory for the extracted files
+          mkdir -p ./dist
+          # Run the container and copy the files out
+          container_id=$(docker create local-build:latest)
+          docker cp $container_id:/app/dist/. ./dist/
+          docker rm $container_id
+          # Create tarball
+          cd dist
+          tar czf ../TwitchDropsMiner-linux-musl.tar.gz *
+          cd ..
+
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: TwitchDropsMiner-linux-musl.tar.gz
+          name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
