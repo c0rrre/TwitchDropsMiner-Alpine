@@ -27,13 +27,21 @@ RUN apk add --no-cache \
     # Additional dependencies
     cairo-dev \
     glib-dev \
-    pango-dev
+    pango-dev \
+    # AppIndicator dependencies for Alpine
+    libappindicator3-dev \
+    libdbusmenu-gtk3-dev
 
 # Create app directory
 WORKDIR /app
 
 # Copy your application files
 COPY . .
+
+# Create required directories for Linux build
+RUN mkdir -p /app/gi_typelibs && \
+# Copy the AppIndicator typelib file - note the different path on Alpine
+cp /usr/lib/girepository-1.0/AppIndicator3-0.1.typelib /app/gi_typelibs/
 
 # Create and activate virtual environment
 RUN python3 -m venv env && \
@@ -69,7 +77,10 @@ RUN apk add --no-cache \
     # Additional runtime dependencies
     cairo \
     glib \
-    pango
+    pango \
+    # Runtime AppIndicator dependencies
+    libappindicator3 \
+    libdbusmenu-gtk3
 
 WORKDIR /app
 
