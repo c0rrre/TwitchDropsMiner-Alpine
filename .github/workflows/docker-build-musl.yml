@@ -40,13 +40,15 @@ jobs:
         run: |
           # Create a directory for the extracted files
           mkdir -p ./dist
-          # Run the container and copy the files out
+          
+          # Extract files from container
           container_id=$(docker create local-build:latest)
           docker cp $container_id:/app/dist/. ./dist/
           docker rm $container_id
+          
           # Create tarball
           cd dist
-          tar czf ../TwitchDropsMiner-linux-musl.tar.gz *
+          tar czf ../TwitchDropsMiner-linux-musl.tar.gz .
           cd ..
 
       - name: Create Release
