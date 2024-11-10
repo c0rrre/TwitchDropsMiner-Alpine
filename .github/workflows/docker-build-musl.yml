@@ -36,6 +36,12 @@ jobs:
           cd dist
           tar czf ../TwitchDropsMiner-linux-musl.tar.gz .
 
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TwitchDropsMiner-linux
+          path: TwitchDropsMiner-linux-musl.tar.gz
+
   release:
     needs: build
     if: startsWith(github.ref, 'refs/tags/')
