@@ -28,8 +28,9 @@ RUN apk add --no-cache \
     cairo-dev \
     glib-dev \
     pango-dev \
-    # AppIndicator dependencies for Alpine
-    libappindicator3-dev \
+    # Ayatana AppIndicator dependencies
+    ayatana-appindicator-dev \
+    libayatana-indicator-dev \
     libdbusmenu-gtk3-dev
 
 # Create app directory
@@ -40,8 +41,8 @@ COPY . .
 
 # Create required directories for Linux build
 RUN mkdir -p /app/gi_typelibs && \
-# Copy the AppIndicator typelib file - note the different path on Alpine
-cp /usr/lib/girepository-1.0/AppIndicator3-0.1.typelib /app/gi_typelibs/
+# Copy the Ayatana AppIndicator typelib
+cp /usr/lib/girepository-1.0/AyatanaAppIndicator3-0.1.typelib /app/gi_typelibs/AppIndicator3-0.1.typelib
 
 # Create and activate virtual environment
 RUN python3 -m venv env && \
@@ -78,8 +79,9 @@ RUN apk add --no-cache \
     cairo \
     glib \
     pango \
-    # Runtime AppIndicator dependencies
-    libappindicator3 \
+    # Runtime Ayatana AppIndicator dependencies
+    ayatana-appindicator \
+    libayatana-indicator \
     libdbusmenu-gtk3
 
 WORKDIR /app
