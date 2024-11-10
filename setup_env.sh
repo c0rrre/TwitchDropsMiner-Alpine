@@ -1,5 +1,5 @@
 #!/bin/bash
-# setup_env.sh
+
 set -e
 
 echo "Creating virtual environment..."

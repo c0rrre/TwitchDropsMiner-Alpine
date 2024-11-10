@@ -1,5 +1,5 @@
 #!/bin/bash
-# build.sh
+
 set -e
 
 if [ ! -d "env" ]; then
