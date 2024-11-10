@@ -38,11 +38,6 @@ WORKDIR /app
 # Copy your application files
 COPY . .
 
-# Create required directories for Linux build
-RUN mkdir -p /app/gi_typelibs && \
-# Copy the Ayatana AppIndicator typelib
-cp /usr/lib/girepository-1.0/AyatanaAppIndicator3-0.1.typelib /app/gi_typelibs/AppIndicator3-0.1.typelib
-
 # Create and activate virtual environment
 RUN python3 -m venv env && \
     . env/bin/activate && \
