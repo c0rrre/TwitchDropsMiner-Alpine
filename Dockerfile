@@ -1,5 +1,5 @@
 # Build stage
-FROM python:3.10-alpine
+FROM python:alpine
 
 # Install build dependencies
 RUN apk add --no-cache \
@@ -20,13 +20,6 @@ RUN apk add --no-cache \
     tk-dev \
     tcl-dev \
     python3-tkinter \
-    # X11 dependencies
-    libx11-dev \
-    libxau-dev \
-    libxdmcp-dev \
-    libxcb-dev \
-    libbsd-dev \
-    libmd-dev
 
 # Create app directory
 WORKDIR /app
