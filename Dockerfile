@@ -13,9 +13,6 @@ RUN apk add --no-cache \
     jpeg-dev \
     zlib-dev \
     freetype-dev \
-    lcms2-dev \
-    openjpeg-dev \
-    tiff-dev \
     # Complete Tkinter dependencies
     tk-dev \
     tcl-dev \
