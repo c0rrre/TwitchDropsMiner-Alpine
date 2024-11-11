@@ -9,10 +9,23 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        platform: [linux/amd64, linux/arm64, linux/arm/v7]
+        include:
+          - platform: linux/amd64
+            arch: amd64
+          - platform: linux/arm64
+            arch: arm64
+          - platform: linux/arm/v7
+            arch: armv7
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -22,25 +35,26 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          platforms: ${{ matrix.platform }}
           load: true  # Load the image locally instead of pushing
-          tags: local-build:latest
+          tags: local-build:${{ matrix.arch }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       - name: Extract built executable
         run: |
-          mkdir -p ./dist/Twitch\ Drops\ Miner
-          container_id=$(docker create local-build:latest)
-          docker cp $container_id:/app/dist/. ./dist/Twitch\ Drops\ Miner/
+          mkdir -p "./dist/Twitch Drops Miner"
+          container_id=$(docker create local-build:${{ matrix.arch }})
+          docker cp "$container_id:/app/dist/." "./dist/Twitch Drops Miner/"
           docker rm $container_id
           cd dist
-          tar czf ../TwitchDropsMiner-linux-musl.tar.gz Twitch\ Drops\ Miner
+          tar czf "../TwitchDropsMiner-linux-musl-${{ matrix.arch }}.tar.gz" "Twitch Drops Miner"
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: TwitchDropsMiner-linux
-          path: TwitchDropsMiner-linux-musl.tar.gz
+          name: TwitchDropsMiner-linux-${{ matrix.arch }}
+          path: TwitchDropsMiner-linux-musl-${{ matrix.arch }}.tar.gz
 
   release:
     needs: build
@@ -49,15 +63,22 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Download build artifact
+      - name: Download all artifacts
         uses: actions/download-artifact@v4
-        with:
-          name: TwitchDropsMiner-linux
+
+      - name: Prepare release files
+        run: |
+          mv TwitchDropsMiner-linux-amd64/TwitchDropsMiner-linux-musl-amd64.tar.gz .
+          mv TwitchDropsMiner-linux-arm64/TwitchDropsMiner-linux-musl-arm64.tar.gz .
+          mv TwitchDropsMiner-linux-armv7/TwitchDropsMiner-linux-musl-armv7.tar.gz .
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: TwitchDropsMiner-linux-musl.tar.gz
+          files: |
+            TwitchDropsMiner-linux-musl-amd64.tar.gz
+            TwitchDropsMiner-linux-musl-arm64.tar.gz
+            TwitchDropsMiner-linux-musl-armv7.tar.gz
           name: Release ${{ github.ref_name }}
           draft: false
           prerelease: false
