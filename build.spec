@@ -43,12 +43,36 @@ hiddenimports: list[str] = [
     "setuptools._distutils.archive_util",
 ]
 
+# Exclude modules based on AppImageBuilder exclusions
+excludes = [
+    'unittest', 'pydoc', 'doctest',
+    'readline', 'pdb', 'pygettext3',
+    'normalizer', 'valgrind',
+    # From AppImageBuilder exclusions
+    'adwaita_icon_theme',
+    'dconf', 'glib_networking',
+    'gsettings_desktop_schemas',
+    'hicolor_icon_theme',
+    'humanity_icon_theme',
+    'colord', 'cups', 
+    'json_glib', 'pango',
+    'soup', 'sqlite3',
+    'webp', 'xml',
+    # Additional Python modules we can safely exclude
+    'test', 'distutils', 'lib2to3',
+    'tiff', 'tcl.test', 'tk.test',
+    # Remove AppIndicator
+    'gi', 'gi.repository.Gtk',
+    'gi.repository.GObject',
+    'gi.repository.AppIndicator3'
+]
+
 block_cipher = None
 a = Analysis(
     ["main.py"],
     pathex=[],
     datas=datas,
-    excludes=[],
+    excludes=excludes,
     hookspath=[],
     noarchive=False,
     runtime_hooks=[],
