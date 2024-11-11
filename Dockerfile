@@ -1,5 +1,5 @@
 # Build stage
-FROM python:3.9-alpine
+FROM python:3.10-alpine
 
 # Install build dependencies
 RUN apk add --no-cache \
@@ -15,19 +15,7 @@ RUN apk add --no-cache \
     freetype-dev \
     lcms2-dev \
     openjpeg-dev \
-    tiff-dev \
-    tk-dev \
-    tcl-dev \
-    # PyGObject dependencies
-    gobject-introspection-dev \
-    gtk+3.0-dev \
-    # X11 dependencies for pystray
-    libx11-dev \
-    xorg-server-dev \
-    # Additional dependencies
-    cairo-dev \
-    glib-dev \
-    pango-dev
+    tiff-dev
 
 # Create app directory
 WORKDIR /app
