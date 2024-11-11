@@ -43,28 +43,12 @@ hiddenimports: list[str] = [
     "setuptools._distutils.archive_util",
 ]
 
-# Exclude modules based on AppImageBuilder exclusions
 excludes = [
-    'unittest', 'pydoc', 'doctest',
-    'readline', 'pdb', 'pygettext3',
-    'normalizer', 'valgrind',
-    # From AppImageBuilder exclusions
-    'adwaita_icon_theme',
-    'dconf', 'glib_networking',
-    'gsettings_desktop_schemas',
-    'hicolor_icon_theme',
-    'humanity_icon_theme',
-    'colord', 'cups', 
-    'json_glib', 'pango',
-    'soup', 'sqlite3',
-    'webp', 'xml',
-    # Additional Python modules we can safely exclude
-    'test', 'distutils', 'lib2to3',
-    'tiff', 'tcl.test', 'tk.test',
-    # Remove AppIndicator
-    'gi', 'gi.repository.Gtk',
-    'gi.repository.GObject',
-    'gi.repository.AppIndicator3'
+    'unittest',
+    'pdb',
+    'test',
+    'distutils',
+    'lib2to3'
 ]
 
 block_cipher = None
@@ -91,6 +75,14 @@ excluded_binaries = [
     "librsvg-2.so.2"
 ]
 a.binaries = [b for b in a.binaries if b[0] not in excluded_binaries]
+
+tcl_tk_paths = {
+    'tcl8.6',
+    'tk8.6',
+    'tcltk'
+}
+a.datas = [x for x in a.datas if not x[0].startswith(('tcl', 'tk')) or 
+           any(path in x[0] for path in tcl_tk_paths)]
 
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher, compress=True)
 exe = EXE(
