@@ -17,9 +17,7 @@ RUN apk add --no-cache \
     openjpeg-dev \
     tiff-dev \
     # Complete Tkinter dependencies
-    tk \
     tk-dev \
-    tcl \
     tcl-dev \
     python3-tkinter
 
