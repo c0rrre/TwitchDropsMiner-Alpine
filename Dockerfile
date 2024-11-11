@@ -16,7 +16,12 @@ RUN apk add --no-cache \
     # Complete Tkinter dependencies
     tk-dev \
     tcl-dev \
-    python3-tkinter
+    python3-tkinter \
+    # X11 dependencies to fix the warnings
+    libx11-dev \
+    libxdmcp-dev \
+    libxcb-dev \
+    libbsd-dev
 
 # Create app directory
 WORKDIR /app
