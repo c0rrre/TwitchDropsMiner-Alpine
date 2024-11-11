@@ -76,8 +76,8 @@ jobs:
           mv TwitchDropsMiner-linux-amd64/TwitchDropsMiner-linux-musl-amd64.tar.gz .
           mv TwitchDropsMiner-linux-arm64/TwitchDropsMiner-linux-musl-arm64.tar.gz .
           mv TwitchDropsMiner-linux-armv7/TwitchDropsMiner-linux-musl-armv7.tar.gz .
-          mv TwitchDropsMiner-linux-armv7/TwitchDropsMiner-linux-musl-armv6.tar.gz .
-          mv TwitchDropsMiner-linux-armv7/TwitchDropsMiner-linux-musl-386.tar.gz .
+          mv TwitchDropsMiner-linux-armv6/TwitchDropsMiner-linux-musl-armv6.tar.gz .
+          mv TwitchDropsMiner-linux-386/TwitchDropsMiner-linux-musl-386.tar.gz .
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
