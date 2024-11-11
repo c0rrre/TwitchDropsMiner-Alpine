@@ -19,7 +19,14 @@ RUN apk add --no-cache \
     # Complete Tkinter dependencies
     tk-dev \
     tcl-dev \
-    python3-tkinter
+    python3-tkinter \
+    # X11 dependencies
+    libx11-dev \
+    libxau-dev \
+    libxdmcp-dev \
+    libxcb-dev \
+    libbsd-dev \
+    libmd-dev
 
 # Create app directory
 WORKDIR /app
