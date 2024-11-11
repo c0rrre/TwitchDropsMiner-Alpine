@@ -70,24 +70,19 @@ jobs:
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
+        with:
+          path: artifacts
 
       - name: Prepare release files
         run: |
-          mv TwitchDropsMiner-linux-amd64/TwitchDropsMiner-linux-musl-amd64.tar.gz .
-          mv TwitchDropsMiner-linux-arm64/TwitchDropsMiner-linux-musl-arm64.tar.gz .
-          mv TwitchDropsMiner-linux-armv7/TwitchDropsMiner-linux-musl-armv7.tar.gz .
-          mv TwitchDropsMiner-linux-armv6/TwitchDropsMiner-linux-musl-armv6.tar.gz .
-          mv TwitchDropsMiner-linux-386/TwitchDropsMiner-linux-musl-386.tar.gz .
+          for dir in artifacts/TwitchDropsMiner-linux-*; do
+            cp "$dir"/* ./
+          done
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            TwitchDropsMiner-linux-musl-amd64.tar.gz
-            TwitchDropsMiner-linux-musl-arm64.tar.gz
-            TwitchDropsMiner-linux-musl-armv7.tar.gz
-            TwitchDropsMiner-linux-musl-armv6.tar.gz
-            TwitchDropsMiner-linux-musl-386.tar.gz
+          files: TwitchDropsMiner-linux-musl-*.tar.gz
           name: Release ${{ github.ref_name }}
           draft: false
           prerelease: false
