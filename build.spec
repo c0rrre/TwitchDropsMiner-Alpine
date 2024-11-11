@@ -94,7 +94,7 @@ exe = EXE(
     [],
     upx=True,
     debug=False,
-    strip=False,
+    strip=True,
     console=False,
     upx_exclude=[],
     target_arch=None,
