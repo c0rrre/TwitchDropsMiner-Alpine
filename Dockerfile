@@ -16,7 +16,7 @@ RUN apk add --no-cache \
     # Complete Tkinter dependencies
     tk-dev \
     tcl-dev \
-    python3-tkinter \
+    python3-tkinter
 
 # Create app directory
 WORKDIR /app
