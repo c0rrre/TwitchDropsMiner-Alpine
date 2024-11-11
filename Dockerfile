@@ -33,5 +33,19 @@ RUN python3 -m venv env && \
     pip install --no-cache-dir -r requirements.txt && \
     pip install pyinstaller
 
+# Debug system info
+RUN echo "System architecture:" && \
+    uname -a && \
+    echo "Python architecture:" && \
+    python -c "import platform; print(platform.architecture())" && \
+    echo "Build machine:" && \
+    gcc -dumpmachine
+
 # Build the application
 RUN . env/bin/activate && pyinstaller build.spec
+
+# Debug the built executable
+RUN echo "Executable details:" && \
+    file dist/"Twitch Drops Miner (by DevilXD)" && \
+    echo "Executable architecture:" && \
+    readelf -h dist/"Twitch Drops Miner (by DevilXD)"
