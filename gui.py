@@ -1101,7 +1101,7 @@ class TrayIcon:
         # else:
         #     self.icon = pystray.Icon("twitch_miner", self.icon_image, self.get_title(drop), menu)
         # self.icon.run_detached()
-        loop.run_in_executor(None, self.icon.run)
+        # loop.run_in_executor(None, self.icon.run)
 
     def restore_position(self):
         if not self.always_show_icon:

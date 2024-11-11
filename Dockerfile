@@ -1,5 +1,5 @@
 # Build stage
-FROM python:3.10-alpine
+FROM python:alpine
 
 # Install build dependencies
 RUN apk add --no-cache \
