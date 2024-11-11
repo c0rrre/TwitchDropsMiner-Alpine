@@ -50,6 +50,7 @@ jobs:
           mkdir -p "./dist/Twitch Drops Miner"
           container_id=$(docker create local-build:${{ matrix.arch }})
           docker cp "$container_id:/app/dist/." "./dist/Twitch Drops Miner/"
+          docker cp "$container_id:/app/manual.txt" "./dist/Twitch Drops Miner/"
           docker rm $container_id
           cd dist
           tar czf "../TwitchDropsMiner-linux-musl-${{ matrix.arch }}.tar.gz" "Twitch Drops Miner"
