@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        platform: [linux/amd64, linux/arm64, linux/arm/v7]
+        platform: [linux/amd64, linux/arm64, linux/arm/v7, linux/arm/v6, linux/386]
         include:
           - platform: linux/amd64
             arch: amd64
@@ -19,6 +19,10 @@ jobs:
             arch: arm64
           - platform: linux/arm/v7
             arch: armv7
+          - platform: linux/arm/v6
+            arch: armv6
+          - platform: linux/386
+            arch: 386
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -71,6 +75,8 @@ jobs:
           mv TwitchDropsMiner-linux-amd64/TwitchDropsMiner-linux-musl-amd64.tar.gz .
           mv TwitchDropsMiner-linux-arm64/TwitchDropsMiner-linux-musl-arm64.tar.gz .
           mv TwitchDropsMiner-linux-armv7/TwitchDropsMiner-linux-musl-armv7.tar.gz .
+          mv TwitchDropsMiner-linux-armv7/TwitchDropsMiner-linux-musl-armv6.tar.gz .
+          mv TwitchDropsMiner-linux-armv7/TwitchDropsMiner-linux-musl-386.tar.gz .
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
@@ -79,6 +85,8 @@ jobs:
             TwitchDropsMiner-linux-musl-amd64.tar.gz
             TwitchDropsMiner-linux-musl-arm64.tar.gz
             TwitchDropsMiner-linux-musl-armv7.tar.gz
+            TwitchDropsMiner-linux-musl-armv6.tar.gz
+            TwitchDropsMiner-linux-musl-386.tar.gz
           name: Release ${{ github.ref_name }}
           draft: false
           prerelease: false
