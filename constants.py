@@ -95,10 +95,11 @@ LANG_PATH = _resource_path("lang")
 # Other Paths
 LOG_PATH = Path(WORKING_DIR, "log.txt")
 CACHE_PATH = Path(WORKING_DIR, "cache")
+CONFIG_PATH = Path(WORKING_DIR, "config")
 LOCK_PATH = Path(WORKING_DIR, "lock.file")
 CACHE_DB = Path(CACHE_PATH, "mapping.json")
-COOKIES_PATH = Path(WORKING_DIR, "cookies.jar")
-SETTINGS_PATH = Path(WORKING_DIR, "settings.json")
+COOKIES_PATH = Path(CONFIG_PATH, "cookies.jar")
+SETTINGS_PATH = Path(CONFIG_PATH, "settings.json")
 # Typing
 JsonType = Dict[str, Any]
 URLType = NewType("URLType", str)

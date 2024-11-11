@@ -5,7 +5,7 @@ from typing import Any, TypedDict, TYPE_CHECKING
 from yarl import URL
 
 from utils import json_load, json_save
-from constants import SETTINGS_PATH, DEFAULT_LANG
+from constants import CONFIG_PATH, SETTINGS_PATH, DEFAULT_LANG
 
 if TYPE_CHECKING:
     from main import ParsedArgs
@@ -71,6 +71,7 @@ class Settings:
         self._settings: SettingsFile = json_load(SETTINGS_PATH, default_settings)
         self._args: ParsedArgs = args
         self._altered: bool = False
+        CONFIG_PATH.mkdir(parents=True, exist_ok=True)
 
     # default logic of reading settings is to check args first, then the settings file
     def __getattr__(self, name: str, /) -> Any:
