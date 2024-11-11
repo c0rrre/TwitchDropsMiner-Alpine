@@ -1,5 +1,5 @@
 # Build stage
-FROM python:alpine
+FROM --platform=linux/amd64 python:alpine
 
 # Install build dependencies
 RUN apk add --no-cache \
