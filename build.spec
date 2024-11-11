@@ -43,20 +43,12 @@ hiddenimports: list[str] = [
     "setuptools._distutils.archive_util",
 ]
 
-excludes = [
-    'unittest',
-    'pdb',
-    'test',
-    'distutils',
-    'lib2to3'
-]
-
 block_cipher = None
 a = Analysis(
     ["main.py"],
     pathex=[],
     datas=datas,
-    excludes=excludes,
+    excludes=[],
     hookspath=[],
     noarchive=False,
     runtime_hooks=[],
@@ -72,17 +64,58 @@ a = Analysis(
 excluded_binaries = [
     "libicudata.so.66",
     "libicuuc.so.66",
-    "librsvg-2.so.2"
+    "librsvg-2.so.2",
+    # Direct library mappings
+    'libavahi-client.so.3',
+    'libavahi-common.so.3',
+    'libbrotli.so.1',
+    'libcolord.so.2',
+    'libcups.so.2',
+    'libdb.so.5.3',
+    'libdconf.so.1',
+    'libgmp.so.10',
+    'libgnutls.so.30',
+    'libgssapi-krb5.so.2',
+    'libhogweed.so.5',
+    'libicu.so.66',
+    'libjson-glib-1.0.so.0',
+    'libk5crypto.so.3',
+    'libkrb5.so.3',
+    'libkrb5support.so.0',
+    'liblcms2.so.2',
+    'libncursesw.so.6',
+    'libnettle.so.7',
+    'libp11-kit.so.0',
+    'libpangoxft-1.0.so.0',
+    'libpsl.so.5',
+    'librest-0.7.so.0',
+    'libsoup-2.4.so.1',
+    'libsoup-gnome-2.4.so.1',
+    'libsqlite3.so.0',
+    'libtasn1.so.6',
+    'libtiff.so.5',
+    'libtinfo.so.6',
+    'libunistring.so.2',
+    'libwebp.so.6',
+    'libxft.so.2',  # Since you'll ship your own version
+    'libxml2.so.2',
+    
+    # Additional related libraries from package dependencies
+    'libglib-networking.so',
+    'libcolord.so',
+    'libdconf.so',
+    'libgssapi.so',
+    
+    # Wildcards to catch versioned libraries
+    'libavahi-*.so.*',
+    'libgmp.so.*',
+    'libgnutls.so.*',
+    'libkrb5*.so.*',
+    'libhogweed.so.*',
+    'libnettle.so.*',
+    'libsoup*.so.*',
 ]
 a.binaries = [b for b in a.binaries if b[0] not in excluded_binaries]
-
-tcl_tk_paths = {
-    'tcl8.6',
-    'tk8.6',
-    'tcltk'
-}
-a.datas = [x for x in a.datas if not x[0].startswith(('tcl', 'tk')) or 
-           any(path in x[0] for path in tcl_tk_paths)]
 
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher, compress=True)
 exe = EXE(
