@@ -1,6 +1,8 @@
-# Twitch Drops Miner
+# Twitch Drops Miner (Alpine)
 
-Thanks to @DevilXD and other contributors from the [original repo](https://github.com/DevilXD/TwitchDropsMiner) for the vast majority of the code.
+Thanks to @DevilXD, @Windows200000, and other contributors from the [original repo](https://github.com/DevilXD/TwitchDropsMiner) and [forked repo](https://github.com/DevilXD/TwitchDropsMiner) for the vast majority of the code.
+
+This modified version is designed run on Alpine Linux inside of a docker container. The [docker container repo](https://github.com/fireph/docker-twitch-drops-miner) has all the code to create a container with VNC and uploads it to Docker Hub. The notification tray functionality has been removed since that isn't needed for an app running inside Docker and causes the app size/container size to be much larger from the dependencies.
 
 This application allows you to AFK mine timed Twitch drops, without having to worry about switching channels when the one you were watching goes offline, claiming the drops, or even receiving the stream data itself. This helps both you and Twitch save on bandwidth and hassle. Everyone wins!
 
