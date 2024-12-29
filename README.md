@@ -31,11 +31,10 @@ Every ~20 seconds, the application asks Twitch for a URL to the raw stream data 
 
 ### Pictures:
 
-![Main](https://user-images.githubusercontent.com/4180725/164298155-c0880ad7-6423-4419-8d73-f3c053730a1b.png)
-![Inventory](https://user-images.githubusercontent.com/4180725/164298315-81cae0d2-24a4-4822-a056-154fd763c284.png)
-![Settings](https://user-images.githubusercontent.com/4180725/164298391-b13ad40d-3881-436c-8d4c-34e2bbe33a78.png)
-![Help](https://github.com/Windows200000/TwitchDropsMiner-updated/assets/72623832/ca1c25e1-650f-415b-ab9d-8cfc001fc7e6)
-
+![Main](https://github.com/user-attachments/assets/de31cec9-ca44-4584-b475-ccdaa87d639f)
+![Inventory](https://github.com/user-attachments/assets/feb9e4f4-6024-42a9-86ac-d32d5eb5cad1)
+![Settings](https://github.com/user-attachments/assets/baec7387-4498-4494-92d7-442031551705)
+![Help](https://github.com/user-attachments/assets/3b26a03b-545b-43f1-b56e-2ff6b0edd839)
 
 ### Notes:
 
