@@ -31,10 +31,10 @@ Every ~20 seconds, the application asks Twitch for a URL to the raw stream data 
 
 ### Pictures:
 
-![Main](https://github.com/user-attachments/assets/de31cec9-ca44-4584-b475-ccdaa87d639f)
-![Inventory](https://github.com/user-attachments/assets/feb9e4f4-6024-42a9-86ac-d32d5eb5cad1)
-![Settings](https://github.com/user-attachments/assets/baec7387-4498-4494-92d7-442031551705)
-![Help](https://github.com/user-attachments/assets/3b26a03b-545b-43f1-b56e-2ff6b0edd839)
+![Main](https://github.com/user-attachments/assets/3b78bb3d-0e55-4708-81a2-cc58ca987f01)
+![Inventory](https://github.com/user-attachments/assets/e1b3e227-a9d0-42be-ae51-f7ba2d235334)
+![Settings](https://github.com/user-attachments/assets/61577e27-b38d-4668-8957-7d223400c99c)
+![Help](https://github.com/user-attachments/assets/f9a6fc48-c8c8-4b30-857e-77223a4ccb14)
 
 ### Notes:
 
