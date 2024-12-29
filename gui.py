@@ -1040,8 +1040,8 @@ class TrayIcon:
         self._manager = manager
         self.icon = None
         self.icon_image = Image_module.open(resource_path("pickaxe.ico"))
-        self._button = ttk.Button(master, command=self.minimize, text=_("gui", "tray", "minimize"))
-        self._button.grid(column=0, row=0, sticky="ne")
+        # self._button = ttk.Button(master, command=self.minimize, text=_("gui", "tray", "minimize"))
+        # self._button.grid(column=0, row=0, sticky="ne")
         self.always_show_icon = True        # Ensure there is a way to restore the window position, in case it's shown off-screen (e.g. Second monitor)
         if self.always_show_icon:
             self._start()
