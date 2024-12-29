@@ -1040,6 +1040,7 @@ class TrayIcon:
         self._manager = manager
         self.icon = None
         self.icon_image = Image_module.open(resource_path("pickaxe.ico"))
+        # Anything tray related disabled in this version
         # self._button = ttk.Button(master, command=self.minimize, text=_("gui", "tray", "minimize"))
         # self._button.grid(column=0, row=0, sticky="ne")
         self.always_show_icon = True        # Ensure there is a way to restore the window position, in case it's shown off-screen (e.g. Second monitor)
@@ -1559,26 +1560,27 @@ class SettingsPanel:
         ttk.Checkbutton(
             checkboxes_frame, variable=self._vars["dark_theme"], command=self.change_theme
         ).grid(column=1, row=irow, sticky="w")
-        ttk.Label(
-            checkboxes_frame, text=_("gui", "settings", "general", "autostart")
-        ).grid(column=0, row=(irow := irow + 1), sticky="e")
-        ttk.Checkbutton(
-            checkboxes_frame, variable=self._vars["autostart"], command=self.update_autostart
-        ).grid(column=1, row=irow, sticky="w")
-        ttk.Label(
-            checkboxes_frame, text=_("gui", "settings", "general", "tray")
-        ).grid(column=0, row=(irow := irow + 1), sticky="e")
-        ttk.Checkbutton(
-            checkboxes_frame, variable=self._vars["tray"], command=self.update_autostart
-        ).grid(column=1, row=irow, sticky="w")
-        ttk.Label(
-            checkboxes_frame, text=_("gui", "settings", "general", "tray_notifications")
-        ).grid(column=0, row=(irow := irow + 1), sticky="e")
-        ttk.Checkbutton(
-            checkboxes_frame,
-            variable=self._vars["tray_notifications"],
-            command=self.update_notifications,
-        ).grid(column=1, row=irow, sticky="w")
+        # Anything tray related disabled in this version
+        # ttk.Label(
+        #     checkboxes_frame, text=_("gui", "settings", "general", "autostart")
+        # ).grid(column=0, row=(irow := irow + 1), sticky="e")
+        # ttk.Checkbutton(
+        #     checkboxes_frame, variable=self._vars["autostart"], command=self.update_autostart
+        # ).grid(column=1, row=irow, sticky="w")
+        # ttk.Label(
+        #     checkboxes_frame, text=_("gui", "settings", "general", "tray")
+        # ).grid(column=0, row=(irow := irow + 1), sticky="e")
+        # ttk.Checkbutton(
+        #     checkboxes_frame, variable=self._vars["tray"], command=self.update_autostart
+        # ).grid(column=1, row=irow, sticky="w")
+        # ttk.Label(
+        #     checkboxes_frame, text=_("gui", "settings", "general", "tray_notifications")
+        # ).grid(column=0, row=(irow := irow + 1), sticky="e")
+        # ttk.Checkbutton(
+        #     checkboxes_frame,
+        #     variable=self._vars["tray_notifications"],
+        #     command=self.update_notifications,
+        # ).grid(column=1, row=irow, sticky="w")
         ttk.Label(
             checkboxes_frame, text=_("gui", "settings", "general", "priority_only")
         ).grid(column=0, row=(irow := irow + 1), sticky="e")
