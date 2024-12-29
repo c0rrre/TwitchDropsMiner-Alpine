@@ -1,4 +1,4 @@
-# Twitch Drops Miner (Alpine)
+# Twitch Drops Miner on Alpine Linux!
 
 Thanks to @DevilXD, @Windows200000, and other contributors from the [original repo](https://github.com/DevilXD/TwitchDropsMiner) and [forked repo](https://github.com/DevilXD/TwitchDropsMiner) for the vast majority of the code.
 
