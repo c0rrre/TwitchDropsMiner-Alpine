@@ -9,6 +9,8 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
       - name: Sync fork and possibly tag
         run: |
           prev_head=$(git rev-parse HEAD)
