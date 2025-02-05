@@ -11,24 +11,21 @@ jobs:
     steps:
       - name: Sync fork and possibly tag
         run: |
-          # Capture the current HEAD commit
           prev_head=$(git rev-parse HEAD)
-          
-          # Get the newest tag from the repository
-          NEWEST_TAG=$(curl -s https://api.github.com/repos/fireph/TwitchDropsMiner-Alpine/releases/latest | grep -oP '(?<="tag_name": ")[^"]*')
-          
-          # Sync the fork
           gh repo sync "$REPOSITORY" -b "$BRANCH_NAME"
-          
-          # Capture the new HEAD commit
           new_head=$(git rev-parse HEAD)
-          
-          # If the new HEAD is different than the old HEAD, tag and push
           if [ "$prev_head" != "$new_head" ]; then
-            version_number="${NEWEST_TAG#v}"
-            next_tag="v$((version_number + 1))"
-            git tag "$next_tag"
-            git push origin --tags
+            echo "New commits found; creating a date-based tag..."
+            date_tag="v$(date +'%Y.%m.%d')"
+            # Check if the tag already exists
+            if git rev-parse "refs/tags/$date_tag" >/dev/null 2>&1; then
+              echo "Tag $date_tag already exists. Skipping."
+            else
+              git tag "$date_tag"
+              git push origin --tags
+            fi
+          else
+            echo "No new commits. Skipping tag creation."
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
