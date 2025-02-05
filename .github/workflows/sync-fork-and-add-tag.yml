@@ -32,5 +32,6 @@ jobs:
             echo "No new commits. Skipping tag creation."
           fi
         env:
+          GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
           REPOSITORY: ${{ github.repository }}
           BRANCH_NAME: ${{ github.ref_name }}
