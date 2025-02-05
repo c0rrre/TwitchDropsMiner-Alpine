@@ -8,10 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      workflows: write
     steps:
       - name: Check out your repo
         uses: actions/checkout@v4
+      - name: Authenticate with fine-grained PAT
+        run: echo "${{ secrets.WORKFLOW_TOKEN }}" | gh auth login --with-token
       - name: Add upstream remote
         run: git remote add upstream https://github.com/Windows200000/TwitchDropsMiner-updated.git
       - name: Sync branch with upstream
