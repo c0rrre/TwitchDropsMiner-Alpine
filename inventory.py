@@ -6,6 +6,8 @@ from typing import TYPE_CHECKING
 from functools import cached_property
 from datetime import datetime, timedelta, timezone
 
+import apprise
+
 from channel import Channel
 from exceptions import GQLException
 from constants import GQL_OPERATIONS, URLType
@@ -38,9 +40,10 @@ class Benefit:
 
 class BaseDrop:
     def __init__(
-        self, campaign: DropsCampaign, data: JsonType, claimed_benefits: dict[str, datetime]
+        self, campaign: DropsCampaign, data: JsonType, claimed_benefits: dict[str, datetime], settings: Settings
     ):
         self._twitch: Twitch = campaign._twitch
+        self.settings = settings
         self.id: str = data["id"]
         self.name: str = data["name"]
         self.campaign: DropsCampaign = campaign
@@ -127,8 +130,18 @@ class BaseDrop:
             and datetime.now(timezone.utc) < self.campaign.ends_at + timedelta(hours=24)
         )
 
+    def send_notification(self, message: str):
+        apprise_url = self.settings.apprise_url
+        if not apprise_url:
+            raise ValueError("Apprise URL is not configured.")
+
+        apobj = apprise.Apprise()
+        apobj.add(apprise_url)  # Use the URL from settings
+        apobj.notify(body=message, title="Twitch Drop Claimed")
+
     def _on_claim(self) -> None:
         invalidate_cache(self, "preconditions_met")
+        self.send_notification(f"{self.campaign.game.name}: {self.rewards_text()}")
 
     def update_claim(self, claim_id: str):
         self.claim_id = claim_id
@@ -260,8 +273,9 @@ class TimedDrop(BaseDrop):
 
 
 class DropsCampaign:
-    def __init__(self, twitch: Twitch, data: JsonType, claimed_benefits: dict[str, datetime]):
+    def __init__(self, twitch: Twitch, data: JsonType, claimed_benefits: dict[str, datetime], setttings: Settings):
         self._twitch: Twitch = twitch
+        self.settings = setttings
         self.id: str = data["id"]
         self.name: str = data["name"]
         self.game: Game = Game(data["game"])
@@ -278,7 +292,7 @@ class DropsCampaign:
             if allowed["channels"] and allowed.get("isEnabled", True) else []
         )
         self.timed_drops: dict[str, TimedDrop] = {
-            drop_data["id"]: TimedDrop(self, drop_data, claimed_benefits)
+            drop_data["id"]: TimedDrop(self, drop_data, claimed_benefits, setttings)
             for drop_data in data["timeBasedDrops"]
         }
 

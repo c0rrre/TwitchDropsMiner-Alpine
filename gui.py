@@ -1499,10 +1499,12 @@ class _SettingsVars(TypedDict):
     proxy: StringVar
     dark_theme: IntVar
     autostart: IntVar
+	language: StringVar
     priority_only: IntVar
     prioritize_by_ending_soonest: IntVar
     tray_notifications: IntVar
     window_position: StringVar
+	apprise_url: StringVar
 
 
 class SettingsPanel:
@@ -1515,6 +1517,7 @@ class SettingsPanel:
         self._twitch = manager._twitch
         self._settings: Settings = manager._twitch.settings
         self._vars: _SettingsVars = {
+            "language": StringVar(master, _.current),
             "proxy": StringVar(master, str(self._settings.proxy)),
             "tray": IntVar(master, self._settings.autostart_tray),
             "dark_theme": IntVar(master, self._settings.dark_theme),
@@ -1523,6 +1526,7 @@ class SettingsPanel:
             "prioritize_by_ending_soonest": IntVar(master, self._settings.prioritize_by_ending_soonest),
             "tray_notifications": IntVar(master, self._settings.tray_notifications),
             "window_position": IntVar(master, self._settings.window_position),
+			"apprise_url": StringVar(master, str(self._settings.apprise_url)),
         }
         master.rowconfigure(0, weight=1)
         master.columnconfigure(0, weight=1)
@@ -1607,6 +1611,22 @@ class SettingsPanel:
         )
         self._proxy.config(validatecommand=partial(proxy_validate, self._proxy, self._settings))
         self._proxy.grid(column=0, row=1)
+
+        # apprise frame
+        apprise_frame = ttk.Frame(center_frame2)
+        apprise_frame.grid(column=0, row=2)
+        ttk.Label(apprise_frame, text="Apprise URL:").grid(column=0, row=0)
+        self._apprise = PlaceholderEntry(
+            apprise_frame,
+            width=37,
+            validate="focusout",
+            prefill="apprise://",
+            textvariable=self._vars["apprise_url"],
+            placeholder="apprise://test/test",
+        )
+        self._apprise.config(validatecommand=partial(apprise_validate, self._apprise, self._settings))
+        self._apprise.grid(column=0, row=1)
+
         # Priority section
         priority_frame = ttk.LabelFrame(
             center_frame, padding=(4, 0, 4, 4), text=_("gui", "settings", "priority")
@@ -2446,6 +2466,7 @@ if __name__ == "__main__":
                 tray=False,
                 priority=[],
                 proxy=URL(),
+                apprise_url=URL(),
                 dark_theme=False,
                 autostart=False,
                 language="English",

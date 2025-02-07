@@ -12,3 +12,5 @@ truststore; python_version >= "3.10"
 # unused dependencies
 # selenium-wire
 # undetected-chromedriver
+
+apprise == 1.9.2
