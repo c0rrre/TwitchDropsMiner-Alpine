@@ -2,7 +2,7 @@
 
 Thanks to @DevilXD, @Windows200000, and other contributors from the [original repo](https://github.com/DevilXD/TwitchDropsMiner) and [forked repo](https://github.com/DevilXD/TwitchDropsMiner) for the vast majority of the code.
 
-This modified version is designed run on Alpine Linux inside of a docker container. The [docker container repo](https://github.com/fireph/docker-twitch-drops-miner) has all the code to create a container with VNC and uploads it to Docker Hub. The notification tray functionality has been removed since that isn't needed for an app running inside Docker and causes the app size/container size to be much larger from the dependencies.
+This modified version is designed run on Alpine Linux inside of a docker container. The [docker container repo](https://github.com/c0rrre/docker-twitch-drops-miner) has all the code to create a container with VNC and uploads it to Docker Hub. The notification tray functionality has been removed since that isn't needed for an app running inside Docker and causes the app size/container size to be much larger from the dependencies.
 
 This application allows you to AFK mine timed Twitch drops, without having to worry about switching channels when the one you were watching goes offline, claiming the drops, or even receiving the stream data itself. This helps both you and Twitch save on bandwidth and hassle. Everyone wins!
 
@@ -23,7 +23,7 @@ Every ~20 seconds, the application asks Twitch for a URL to the raw stream data 
 
 ### Usage:
 
-- Download and unzip [the latest release](https://github.com/fireph/TwitchDropsMiner-Alpine/releases) - it's recommended to keep it in the folder it comes in.
+- Download and unzip [the latest release](https://github.com/c0rrre/TwitchDropsMiner-Alpine/releases) - it's recommended to keep it in the folder it comes in.
 - Run it and login into your Twitch account using your username and password, and a 2FA key if you have one setup. It's recommended to avoid having to double-take this step, as you can run into CAPTCHA that will prevent you from trying to log in again for the next 12+ hours. You can retry afterwards though.
 - After a successful login, the app should fetch a list of all available campaigns and games you can mine drops for - you can then select and add games of choice to the Priority List available on the Settings tab, and then press on the `Reload` button to start processing. It will fetch a list of all applicable streams it can watch, and start mining right away. You can also manually switch to a different channel as needed.
 - Make sure to link your Twitch account to game accounts on the [campaigns page](https://www.twitch.tv/drops/campaigns), to enable more games to be mined.
