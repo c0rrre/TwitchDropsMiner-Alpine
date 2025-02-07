@@ -68,7 +68,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: artifacts
-          name: TwitchDropsMiner-linux-${{ matrix.arch }}
+          name: TwitchDropsMiner-linux-*
 
       - name: Prepare release files
         run: |
