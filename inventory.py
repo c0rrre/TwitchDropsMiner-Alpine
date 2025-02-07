@@ -9,6 +9,7 @@ from datetime import datetime, timedelta, timezone
 import apprise
 
 from channel import Channel
+from settings import Settings
 from exceptions import GQLException
 from constants import GQL_OPERATIONS, URLType
 from utils import timestamp, invalidate_cache, Game

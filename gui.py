@@ -1493,18 +1493,20 @@ def proxy_validate(entry: PlaceholderEntry, settings: Settings) -> bool:
     settings.proxy = url
     return valid
 
+def apprise_validate(entry: PlaceholderEntry, settings: Settings) -> bool:
+    return True
 
 class _SettingsVars(TypedDict):
     tray: IntVar
     proxy: StringVar
     dark_theme: IntVar
     autostart: IntVar
-	language: StringVar
+    language: StringVar
     priority_only: IntVar
     prioritize_by_ending_soonest: IntVar
     tray_notifications: IntVar
     window_position: StringVar
-	apprise_url: StringVar
+    apprise_url: StringVar
 
 
 class SettingsPanel:
