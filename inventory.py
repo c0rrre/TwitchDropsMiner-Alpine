@@ -193,9 +193,9 @@ class BaseDrop:
 
 class TimedDrop(BaseDrop):
     def __init__(
-        self, campaign: DropsCampaign, data: JsonType, claimed_benefits: dict[str, datetime]
+        self, campaign: DropsCampaign, data: JsonType, claimed_benefits: dict[str, datetime], settings: Settings
     ):
-        super().__init__(campaign, data, claimed_benefits)
+        super().__init__(campaign, data, claimed_benefits, settings)
         self._manager: GUIManager = self._twitch.gui
         self._gui_inv: InventoryOverview = self._manager.inv
         self.current_minutes: int = 0
