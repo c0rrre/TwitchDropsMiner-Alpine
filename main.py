@@ -167,6 +167,9 @@ if __name__ == "__main__":
             client.prevent_close()
             client.print("Fatal error encountered:\n")
             client.print(traceback.format_exc())
+            client.gui.stop()
+            client.gui.close_window()
+            sys.exit(exit_status)
         finally:
             if sys.platform == "linux":
                 loop.remove_signal_handler(signal.SIGINT)
