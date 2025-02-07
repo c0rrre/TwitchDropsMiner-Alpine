@@ -1675,7 +1675,7 @@ class Twitch:
             inventory_data = self._merge_data(inventory_data, chunk_campaigns_data)
         # use the merged data to create campaign objects
         campaigns: list[DropsCampaign] = [
-            DropsCampaign(self, campaign_data, claimed_benefits)
+            DropsCampaign(self, campaign_data, claimed_benefits, self.settings)
             for campaign_data in inventory_data.values()
         ]
         campaigns.sort(key=lambda c: c.active, reverse=True)
