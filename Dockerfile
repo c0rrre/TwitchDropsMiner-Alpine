@@ -34,5 +34,8 @@ RUN python3 -m venv env && \
     pip install --no-cache-dir -r requirements.txt && \
     pip install pyinstaller
 
+# Ensure PyInstaller collects all dependencies for Apprise
+RUN . env/bin/activate && pyinstaller -F --collect-all apprise main.py
+
 # Build the application
 RUN . env/bin/activate && pyinstaller build.spec
