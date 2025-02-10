@@ -1,21 +1,37 @@
 {
-  "extends": ["config:base"],
+  "extends": [
+    "config:recommended"
+  ],
+  "dependencyDashboard": true,
+  "dependencyDashboardApproval": true,
+  "assignees": ["c0rrre"],
+  "labels": ["dependencies"],
   "packageRules": [
     {
-      "matchManagers": ["pip_requirements"],
+      "matchManagers": [
+        "pip_requirements"
+      ],
       "prConcurrentLimit": 10
     },
     {
-      "matchManagers": ["dockerfile"],
+      "matchManagers": [
+        "dockerfile"
+      ],
       "prConcurrentLimit": 10,
       "commitMessagePrefix": "[docker] ",
-      "reviewers": ["c0rrre"]
+      "reviewers": [
+        "c0rrre"
+      ]
     },
     {
-      "matchManagers": ["github-actions"],
+      "matchManagers": [
+        "github-actions"
+      ],
       "prConcurrentLimit": 99,
       "commitMessagePrefix": "[github-action] ",
-      "reviewers": ["c0rrre"]
+      "reviewers": [
+        "c0rrre"
+      ]
     }
   ]
 }
