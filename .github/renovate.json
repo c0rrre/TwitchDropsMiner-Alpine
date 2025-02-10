@@ -2,20 +2,20 @@
   "extends": ["config:base"],
   "packageRules": [
     {
-      "matchManagers": ["pip"],
-      "schedule": ["daily"],
+      "matchManagers": ["pip_requirements"],
+      "schedule": ["every day"],
       "prConcurrentLimit": 10
     },
     {
-      "matchManagers": ["docker"],
-      "schedule": ["daily"],
+      "matchManagers": ["dockerfile"],
+      "schedule": ["every day"],
       "prConcurrentLimit": 10,
       "commitMessagePrefix": "[docker] ",
       "reviewers": ["c0rrre"]
     },
     {
       "matchManagers": ["github-actions"],
-      "schedule": ["daily"],
+      "schedule": ["every day"],
       "prConcurrentLimit": 99,
       "commitMessagePrefix": "[github-action] ",
       "reviewers": ["c0rrre"]
