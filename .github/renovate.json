@@ -3,19 +3,16 @@
   "packageRules": [
     {
       "matchManagers": ["pip_requirements"],
-      "schedule": ["every day"],
       "prConcurrentLimit": 10
     },
     {
       "matchManagers": ["dockerfile"],
-      "schedule": ["every day"],
       "prConcurrentLimit": 10,
       "commitMessagePrefix": "[docker] ",
       "reviewers": ["c0rrre"]
     },
     {
       "matchManagers": ["github-actions"],
-      "schedule": ["every day"],
       "prConcurrentLimit": 99,
       "commitMessagePrefix": "[github-action] ",
       "reviewers": ["c0rrre"]
