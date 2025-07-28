@@ -207,7 +207,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Get next version
         uses: reecetech/version-increment@2024.4.3
