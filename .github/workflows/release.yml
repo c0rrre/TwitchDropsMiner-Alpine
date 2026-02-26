@@ -65,7 +65,7 @@ jobs:
           Compress-Archive -Path $FolderName -DestinationPath Twitch.Drops.Miner.Windows.zip
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           if-no-files-found: error
           name: Twitch.Drops.Miner.Windows
@@ -136,7 +136,7 @@ jobs:
           7z a Twitch.Drops.Miner.Linux.PyInstaller.zip "${folder}"
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           if-no-files-found: error
           name: Twitch.Drops.Miner.Linux.PyInstaller
@@ -186,7 +186,7 @@ jobs:
           7z a Twitch.Drops.Miner.Linux.AppImage.zip "${folder}"
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           if-no-files-found: error
           name: Twitch.Drops.Miner.Linux.AppImage
@@ -223,7 +223,7 @@ jobs:
           echo "sha_short=$(git rev-parse --short HEAD)" >> "${GITHUB_OUTPUT}"
 
       - name: Download build artifacts from previous jobs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: artifacts
       

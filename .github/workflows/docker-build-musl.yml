@@ -52,7 +52,7 @@ jobs:
           tar czf "../TwitchDropsMiner-linux-musl-${{ matrix.arch }}.tar.gz" "Twitch Drops Miner"
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: TwitchDropsMiner-linux-${{ matrix.arch }}
           path: TwitchDropsMiner-linux-musl-${{ matrix.arch }}.tar.gz
@@ -65,7 +65,7 @@ jobs:
       contents: write
     steps:
       - name: Download all artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: artifacts
 
