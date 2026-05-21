@@ -229,7 +229,7 @@ jobs:
       
       - name: Read patch notes from file
         id: patch_notes
-        uses: juliangruber/read-file-action@v1.1.7
+        uses: juliangruber/read-file-action@v1.1.8
         with:
           path: ./patch_notes.txt
 
