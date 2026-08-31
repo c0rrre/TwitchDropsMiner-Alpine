@@ -34,7 +34,7 @@ jobs:
 
       # Ensure Python version
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: ${{env.PYTHON_VERSION}}
 
@@ -92,7 +92,7 @@ jobs:
 
       # NOTE: We're only use a custom version of Python here because truststore requires at least Python 3.10, but Ubuntu 20.04 has Python 3.8.
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: ${{env.PYTHON_VERSION}}
 
